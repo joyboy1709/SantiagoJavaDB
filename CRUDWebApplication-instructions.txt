@@ -1,0 +1,17 @@
+By Request: CRUD Web Application using JSP/Servlet, EJB and JPA
+
+1. Setup the Database
+ -Btw, Im using JavaDB to have easier setup
+2. Connect the database to App Server (Glassfish)
+ -Create Connection Pool
+ -Create JDBC Resource
+3. Create the project
+ -Create model class with JPA annotations
+ -Create DAO components (EJB)
+4. Create Persistence unit 
+5. Create Controller component (Servlet)
+6. Create web page (JSP)
+7. Clean and build and test
+8. Debug and test.
+
+That's it!

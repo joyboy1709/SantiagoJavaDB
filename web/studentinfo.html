@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html>
+    <head>
+        <title>Información del estudiante 2025</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Información del estudiante 2025</h1>
+        <form action ="./StudentServlet" method="POST">
+            <table>
+           <tr>
+               <td>Student ID</td>
+               <td><input type="text" name="studentId" value="${student.studentId}" /></td>
+           </tr>
+           
+           <tr>
+               <td>First Name</td>
+               <td><input type="text" name="firstname" value="${student.firstname}" /></td>
+           </tr>
+           
+           <tr>
+               <td>Last Name</td>
+               <td><input type="text" name="lastname" value="${student.lastname}" /></td>
+           </tr>
+           
+           <tr>
+               <td>Year Level</td>
+               <td><input type="text" name="yearLevel" value="${student.yearLevel}" /></td>
+           </tr>
+           
+           <tr>
+               <td colspan="2">
+                   <input type="submit" name="action" value="Add" />
+                    <input type="submit" name="action" value="Edit" />
+                     <input type="submit" name="action" value="Delete" />
+                      <input type="submit" name="action" value="Search" />
+               </td>
+              
+           </tr>
+           
+        </table>
+            
+        </form>
+        
+        <br>
+        <table border ="1">
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Year Level</th>
+            <c:foreach items = "${allStudents}" var = "stud">
+                <tr>
+                   <td>${stud.studentId}</td> 
+                   <td>${stud.firstname}</td>
+                   <td>${stud.lastname}</td>
+                   <td>${stud.yearLevel}</td>
+                </tr>    
+            </c:foreach>    
+        </table>
+    </body>
+</html>
