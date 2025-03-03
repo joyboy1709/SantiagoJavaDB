@@ -1,6 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.santiago.dao;
@@ -13,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author santu
+ * @author Joseph
  */
 @Stateless
 public class StudentDao implements StudentDaoLocal {
@@ -24,7 +23,6 @@ public class StudentDao implements StudentDaoLocal {
     public void addStudent(Student student) {
         em.persist(student);
     }
-    
 
     @Override
     public void editStudent(Student student) {
@@ -38,13 +36,12 @@ public class StudentDao implements StudentDaoLocal {
 
     @Override
     public Student getStudent(int studentId) {
-        return em.find(Student.class,studentId);
+        return em.find(Student.class, studentId);
     }
 
     @Override
     public List<Student> getAllStudents() {
         return em.createNamedQuery("Student.getAll").getResultList();
     }
-    
-    
+
 }

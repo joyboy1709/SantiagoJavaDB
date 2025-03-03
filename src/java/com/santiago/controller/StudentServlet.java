@@ -1,6 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.santiago.controller;
@@ -17,53 +16,48 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author santu
+ * @author Joseph
  */
 @WebServlet(name = "StudentServlet", urlPatterns = {"/StudentServlet"})
 public class StudentServlet extends HttpServlet {
-  @EJB
-  private StudentDaoLocal studentDao;
+    @EJB
+    private StudentDaoLocal studentDao;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
         String studentIdStr = request.getParameter("studentId");
-        int studentId = 0;
-        if(studentIdStr!=null && !studentIdStr.equals(""))
-            studentId=Integer.parseInt(studentIdStr);
-        
-        //int studentId = studentIdStr.equals("") ? 0 : Integer.parseInt(studentIdStr);
+        int studentId=0;
+        if(studentIdStr!=null && !studentIdStr.equals("")){
+            studentId=Integer.parseInt(studentIdStr);    
+        }
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String yearLevelStr = request.getParameter("yearLevel");
-         //int yearLevel = yearLevelStr.equals("") ? 0 : Integer.parseInt(yearLevelStr);
+        int yearLevel=0;
+        if(yearLevelStr!=null && !yearLevelStr.equals("")){
+            yearLevel=Integer.parseInt(yearLevelStr);
+        }
+        Student student = new Student(studentId, firstname, lastname, yearLevel);
         
-        int yearLevel = 0;
-        if(yearLevelStr!=null && !yearLevelStr.equals(""))
-           yearLevel = Integer.parseInt(yearLevelStr);
-            
-         Student student = new Student(studentId, firstname, lastname, yearLevel);
-         
-         if("Add".equalsIgnoreCase(action)){
-             studentDao.addStudent(student);
-             
-         }else if("Edit".equalsIgnoreCase(action)){
-             studentDao.editStudent(student);
-             
-         }else if("Delete".equalsIgnoreCase(action)){
-             studentDao.deleteStudent(studentId);
-             
-         }else if("Search".equalsIgnoreCase(action)){
-            student =  studentDao.getStudent(studentId);
-         } 
-         request.setAttribute("student", student);
-         request.setAttribute("allStudent", studentDao.getAllStudents());
-         request.getRequestDispatcher("studentinfo.html").forward(request, response);
+        if("Add".equalsIgnoreCase(action)){
+            studentDao.addStudent(student);
+        }else if("Edit".equalsIgnoreCase(action)){
+            studentDao.editStudent(student);
+        }else if("Delete".equalsIgnoreCase(action)){
+            studentDao.deleteStudent(studentId);
+        }else if("Search".equalsIgnoreCase(action)){
+            student = studentDao.getStudent(studentId);
+        }
+        request.setAttribute("student", student);
+        request.setAttribute("allStudents", studentDao.getAllStudents());
+        request.getRequestDispatcher("studentinfo.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -77,7 +71,8 @@ public class StudentServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -99,5 +94,4 @@ public class StudentServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

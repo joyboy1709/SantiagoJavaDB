@@ -1,6 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.santiago.model;
@@ -17,15 +16,15 @@ import javax.persistence.Table;
 
 /**
  *
- * @author santu
+ * @author Joseph
  */
 @Entity
 @Table
-@NamedQueries(@NamedQuery(name="Student.getAll",query="SELECT e FROM Student e"))
+@NamedQueries({@NamedQuery(name="Student.getAll",query="SELECT e FROM Student e")})
 public class Student implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column 
+    @Column
     private int studentId;
     @Column
     private String firstname;
@@ -74,5 +73,4 @@ public class Student implements Serializable{
     }
     
     public Student(){}
-    
 }
